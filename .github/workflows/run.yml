@@ -23,5 +23,5 @@ jobs:
       - name: check
         env:
           COOKIE: ${{ secrets.COOKIE }}
-          # KEY: ${{ secrets.KEY }}
+          KEY: ${{ secrets.KEY }}
         run: python check.py

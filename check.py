@@ -30,13 +30,22 @@ def glados():
             f"<{os.getenv('GITHUB_SERVER_URL')}/{os.getenv('GITHUB_REPOSITORY')}>",
         ]
 
-def notify(contents):
-    pass
+def notify(data):
+    key = os.getenv('KEY')
+    if not key:
+        return
+    url = f'https://sctapi.ftqq.com/{key}.send'
+    params = {
+        'title': data[0],
+        'desp': '<br>'.join(contents),
+    }
+    resp = requests.post(url, params=params)
+    return result
 
 def main():
     contents = glados()
-    # if contents:
-        # notify(contents)
+    if contents:
+        notify(contents)
 
 if __name__ == "__main__":
     main()
