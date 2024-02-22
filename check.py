@@ -37,10 +37,10 @@ def notify(data):
     url = f'https://sctapi.ftqq.com/{key}.send'
     params = {
         'title': data[0],
-        'desp': '<br>'.join(contents),
+        'desp': '\n'.join(data),
     }
     resp = requests.post(url, params=params)
-    return result
+    return resp
 
 def main():
     contents = glados()

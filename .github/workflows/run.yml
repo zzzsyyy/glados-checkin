@@ -17,7 +17,7 @@ jobs:
         run: pip install requests
       - name: Generate Random Delay
         id: random-delay
-        run: echo "::set-output name=delay::$((RANDOM % 3600))"
+        run: echo "delay=$((RANDOM % 600))" >> "$GITHUB_OUTPUT"
       - name: Wait for Random Delay
         run: sleep ${{ steps.random-delay.outputs.delay }}
       - name: check
