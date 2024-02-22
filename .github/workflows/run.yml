@@ -1,0 +1,27 @@
+name: run
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 27 14 * * *
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: install requirements
+        run: pip install requests
+      - name: Generate Random Delay
+        id: random-delay
+        run: echo "::set-output name=delay::$((RANDOM % 3600))"
+      - name: Wait for Random Delay
+        run: sleep ${{ steps.random-delay.outputs.delay }}
+      - name: check
+        env:
+          COOKIE: ${{ secrets.COOKIE }}
+          # KEY: ${{ secrets.KEY }}
+        run: python check.py
