@@ -9,7 +9,7 @@ def glados():
         headers = {
             'cookie': cookie,
             'referer': 'https://glados.one/console/checkin',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0',
             'content-type': 'application/json',
         }
         checkin_response = requests.post('https://glados.one/api/user/checkin', headers=headers, json={"token": "glados.one"})
